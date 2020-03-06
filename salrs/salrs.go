@@ -113,8 +113,12 @@ func Link(msg1 []byte, dpkRing1 *DpkRing, sig1 *Signature, msg2 []byte, dpkRing2
 }
 
 func (mpk *MasterPubKey) Serialize() []byte {
-	b := make([]byte, 0, MpkByteLen)
+	b := make([]byte, MpkByteLen)
+
 	// to do
+	for i := range b {
+		b[i] = 0
+	}
 	return b
 }
 
@@ -131,7 +135,7 @@ func DeseralizeMasterPubKey(mpkByteStr []byte) (mpk *MasterPubKey, err error) {
 }
 
 func (dpk *DerivedPubKey) Serialize() []byte {
-	b := make([]byte, 0, DpkByteLen)
+	b := make([]byte, DpkByteLen)
 
 	// to do
 	for i := range b {
