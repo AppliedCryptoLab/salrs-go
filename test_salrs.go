@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/kbb-98/salrs-go/tree/master/salrs"
+	"github.com/kbb-98/salrs-go/salrs"
 )
 
 const(
