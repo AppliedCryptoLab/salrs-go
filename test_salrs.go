@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/kbb-98/salrs-go/salrs"
+	"github.com/appliedcryptolab/salrs-go/salrs"
 )
 
-const(
+const (
 	r = 10 //dpk ring scale
 )
 
@@ -33,13 +33,12 @@ func main() {
 	//setup
 	salrs.Setup()
 
-
 	//choose generating master seed from passphase or generating seed of master key to generate a seed for master key
 	//both codes are tested and provided below
 
 	//generate master seed from passphase
 	mseed, err = salrs.GenerateMasterSeedFromPassPhase(msg1)
-	if err != nil{
+	if err != nil {
 		fmt.Println(err)
 	}
 
@@ -60,27 +59,27 @@ func main() {
 	//test of the Serialize & Deseralize of master key
 	mpkbytestr = mpk.Serialize()
 	mpk, err = salrs.DeseralizeMasterPubKey(mpkbytestr)
-	if err != nil{
+	if err != nil {
 		fmt.Println(err)
 	}
 
 	//generate derived public key
 	dpk1, err = salrs.GenerateDerivedPubKey(mpk)
-	if err != nil{
+	if err != nil {
 		fmt.Println(err)
 	}
 
 	//test of the Serialize & Deseralize of derived public key
 	dpkbytestr = dpk1.Serialize()
 	dpk1, err = salrs.DeseralizeDerivedPubKey(dpkbytestr)
-	if err != nil{
+	if err != nil {
 		fmt.Println(err)
 	}
 
 	//generate a dpkring for test
 	for i = 0; i < r; i++ {
 		dpktmp, err = salrs.GenerateDerivedPubKey(mpk)
-		if err != nil{
+		if err != nil {
 			fmt.Println(err)
 		}
 		dpkring.Dpk = append(dpkring.Dpk, *dpktmp)
@@ -117,4 +116,3 @@ func main() {
 	flag = salrs.EqualI(keyimage1.I, keyimage2.I)
 	fmt.Println(flag)
 }
-
